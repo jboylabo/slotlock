@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "dev": "pnpm --filter @slotlock/api dev",
-    "build": "pnpm --filter @slotlock/api build",
+    "dev:web": "pnpm --filter @slotlock/web dev",
+    "build": "pnpm --filter @slotlock/api build && pnpm --filter @slotlock/web build",
     "test": "pnpm --filter @slotlock/api test",
     "db:generate": "pnpm --filter @slotlock/api db:generate",
     "db:migrate": "pnpm --filter @slotlock/api db:migrate",
