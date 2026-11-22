@@ -10,7 +10,7 @@ const required = (key: string): string => {
 
 export const env = {
   databaseUrl:
-    process.env.DATABASE_URL ?? "postgres://slotlock:slotlock@localhost:5432/slotlock",
+    process.env.DATABASE_URL ?? "postgres://slotlock:slotlock@localhost:5433/slotlock",
   port: Number(process.env.PORT ?? 3000),
   betterAuthSecret: required("BETTER_AUTH_SECRET"),
   betterAuthUrl: process.env.BETTER_AUTH_URL ?? "http://localhost:3000",
