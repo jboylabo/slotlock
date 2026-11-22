@@ -14,7 +14,6 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
-import { DateTimePicker } from "@mantine/dates";
 import { notifications } from "@mantine/notifications";
 import dayjs from "dayjs";
 import { authClient } from "../lib/auth-client";
@@ -139,17 +138,17 @@ export function Dashboard({ userName }: { userName: string }) {
             />
             <TextInput label="タイトル" value={title} onChange={(e) => setTitle(e.target.value)} />
             <NumberInput label="人数" min={1} value={attendees} onChange={(v) => setAttendees(Number(v) || 1)} />
-            <DateTimePicker
+            <TextInput
               label="開始"
-              valueFormat="YYYY/MM/DD HH:mm"
-              value={startAt}
-              onChange={(v) => setStartAt(v ? new Date(v) : null)}
+              type="datetime-local"
+              value={startAt ? dayjs(startAt).format("YYYY-MM-DDTHH:mm") : ""}
+              onChange={(e) => setStartAt(e.target.value ? new Date(e.target.value) : null)}
             />
-            <DateTimePicker
+            <TextInput
               label="終了"
-              valueFormat="YYYY/MM/DD HH:mm"
-              value={endAt}
-              onChange={(v) => setEndAt(v ? new Date(v) : null)}
+              type="datetime-local"
+              value={endAt ? dayjs(endAt).format("YYYY-MM-DDTHH:mm") : ""}
+              onChange={(e) => setEndAt(e.target.value ? new Date(e.target.value) : null)}
             />
           </Group>
           <Group mt="md">

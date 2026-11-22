@@ -8,7 +8,8 @@
     "test": "pnpm --filter @slotlock/api test",
     "db:generate": "pnpm --filter @slotlock/api db:generate",
     "db:migrate": "pnpm --filter @slotlock/api db:migrate",
-    "db:seed": "pnpm --filter @slotlock/api db:seed"
+    "db:seed": "pnpm --filter @slotlock/api db:seed",
+    "e2e": "pnpm --filter @slotlock/e2e test"
   },
   "packageManager": "pnpm@12.14.0"
 }
