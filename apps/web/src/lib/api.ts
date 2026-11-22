@@ -20,9 +20,11 @@ export interface Reservation {
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const headers: Record<string, string> = {};
+  if (init?.body) headers["Content-Type"] = "application/json";
   const res = await fetch(path, {
     credentials: "include",
-    headers: { "Content-Type": "application/json" },
+    headers,
     ...init,
   });
   const body = await res.json().catch(() => ({}));
