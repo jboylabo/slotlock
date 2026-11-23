@@ -107,7 +107,11 @@ SELECT id, capacity FROM rooms WHERE id = $roomId FOR UPDATE;
 4. **時間帯の重複チェック：**
 同一 `room_id` かつ `status = 'confirmed'` で、以下の条件を満たす既存予約が 0 件であることを確認する。
 
-$$\text{existing.start\_at} < \text{new.end\_at} \quad \text{AND} \quad \text{existing.end\_at} > \text{new.start\_at}$$
+```text
+existing.start_at < new.end_at AND existing.end_at > new.start_at
+```
+
+（この不等式は「既存予約の時間帯と新規予約の時間帯が重なっている」ことを表します。）
 
 
 5. **予約登録：**
