@@ -59,13 +59,15 @@
 
 Better Auth が自動生成する認証用テーブル（`user`, `session`, `account`, `verification`）に加え、アプリ固有のテーブルは**2つだけ**に絞ります。
 
+テーブル間のリレーションと全カラムは [ER 図](docs/er-diagram.md) を参照してください。
+
 ### 3.1 `rooms`（会議室マスタ）
 
 *親レコードとして行ロックの対象にするテーブル*
 
 | カラム名 | 型 | 制約 | 説明 |
 | --- | --- | --- | --- |
-| `id` | `serial` / `uuid` | PK | 会議室ID |
+| `id` | `serial` | PK | 会議室ID |
 | `name` | `text` | NOT NULL | 会議室名（例: "Room A", "Focus Booth 1"） |
 | `capacity` | `integer` | NOT NULL | 収容人数（数字） |
 | `created_at` | `timestamp` | NOT NULL, DEFAULT NOW() | 作成日時 |
@@ -76,8 +78,8 @@ Better Auth が自動生成する認証用テーブル（`user`, `session`, `acc
 
 | カラム名 | 型 | 制約 | 説明 |
 | --- | --- | --- | --- |
-| `id` | `serial` / `uuid` | PK | 予約ID |
-| `room_id` | `integer` / `uuid` | FK (`rooms.id`), NOT NULL | 対象会議室ID |
+| `id` | `serial` | PK | 予約ID |
+| `room_id` | `integer` | FK (`rooms.id`), NOT NULL | 対象会議室ID |
 | `user_id` | `text` | FK (`user.id`), NOT NULL | 予約ユーザーID（Better Authの `user.id`） |
 | `title` | `text` | NOT NULL | 予約用途・メモ（テキスト） |
 | `attendees` | `integer` | NOT NULL | 利用人数（数字） |
